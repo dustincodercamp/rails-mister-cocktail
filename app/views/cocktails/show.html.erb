@@ -1,4 +1,4 @@
-<p id=“notice”><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
@@ -6,17 +6,16 @@
   <br>
   <strong>Doses:</strong>
   <% @cocktail.doses.each do |dose| %>
-    <%= dose.description %> of
+    <%= dose.description %>
     <%= dose.ingredient.name %>
   <% end %>
 </p>
 
 
-<%= simple_form_for @dose do |f| %>
+<%= simple_form_for [@cocktail, @dose] do |f| %>
   <%= f.input :description %>
-  <%= f.input :ingredient_id, collection: Ingredient.all %>
-  <%= f.input :cocktail_id, :as => :hidden, :input_html => { :value => @cocktail.id } %>
-  <%= f.submit “add a dose”, class: “btn btn-primary” %>
+  <%= f.association :ingredient %>
+  <%= f.submit "add a dose", class: "btn btn-primary" %>
 <% end %>
 
-<%= link_to ‘Back’, cocktails_path %>
+<%= link_to "Back", cocktails_path %>

@@ -25,7 +25,7 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.new(cocktail_params)
 
    if @cocktail.save
-      redirect_to @cocktail, notice: ‘Cocktail was successfully created.’
+      redirect_to @cocktail, notice: "Cocktail was successfully created."
     else
       render :new
     end
@@ -34,7 +34,7 @@ class CocktailsController < ApplicationController
  # PATCH/PUT /cocktails/1
   def update
     if @cocktail.update(cocktail_params)
-      redirect_to @cocktail, notice: ‘Cocktail was successfully updated.’
+      redirect_to @cocktail, notice: "Cocktail was successfully updated."
     else
       render :edit
     end
@@ -43,7 +43,7 @@ class CocktailsController < ApplicationController
  # DELETE /cocktails/1
   def destroy
     @cocktail.destroy
-    redirect_to cocktails_url, notice: ‘Cocktail was successfully destroyed.’
+    redirect_to cocktails_url, notice: "Cocktail was successfully destroyed."
   end
 
  private
