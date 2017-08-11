@@ -1,16 +1,14 @@
+require 'json'
+require 'open-uri'
+
+url = 'http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
+ingredients_serialized = open(url).read
+ingredients = JSON.parse(ingredients_serialized)
 Ingredient.destroy_all
-Cocktail.destroy_all
 
-Ingredient.create(name: "Jack Daniels")
-Ingredient.create(name: "Jagermeister")
-Ingredient.create(name: "Lime Juice")
-Ingredient.create(name: "Ice")
-Ingredient.create(name: "Lemons")
-Ingredient.create(name: "Mint")
-Ingredient.create(name: "Red Bull")
-Ingredient.create(name: "Coke")
+ingredients["drinks"].each do |i|
+  name = i["strIngredient1"]
+  Ingredient.create(name: name)
+end
 
-Cocktail.create(name: "Jack and Coke")
-Cocktail.create(name: "Jager Bomb")
-Cocktail.create(name: "Caiprinha")
 

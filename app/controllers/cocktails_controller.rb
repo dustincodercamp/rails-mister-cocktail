@@ -43,7 +43,7 @@ class CocktailsController < ApplicationController
  # DELETE /cocktails/1
   def destroy
     @cocktail.destroy
-    redirect_to cocktails_url, notice: "Cocktail was successfully destroyed."
+    redirect_to cocktails_path, notice: "Cocktail was successfully destroyed."
   end
 
  private
@@ -54,6 +54,6 @@ class CocktailsController < ApplicationController
 
    # Only allow a trusted parameter “white list” through.
     def cocktail_params
-      params.require(:cocktail).permit(:name)
+      params.require(:cocktail).permit(:name, :photo, :photo_cache)
     end
 end
